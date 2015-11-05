@@ -83,3 +83,7 @@ docker
 	      roles:
 	        - hadoop-datanode
 	        - postgresql
+
+	Storm:  nimbus.host: "edp06"  supervisor hosts: edp02,edp03,edp04,edp01
+	hbase: master edp01, regionservers edp02.edp03,edp04,edp05,edp06
+
