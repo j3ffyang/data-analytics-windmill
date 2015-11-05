@@ -27,7 +27,7 @@ Security disable SSH password authentication
 ## Performance Tuning
 http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html
 
-### disable transparent_hugepage > edit /etc/rc.local
+### Disable transparent_hugepage > edit /etc/rc.local
 
 Disable THP at boot time
 
@@ -46,7 +46,8 @@ Or edit /etc/grub.conf
 
 	kernel /vmlinuz-2.6.32-504.el6.x86_64 ro root=UUID=d0bb5e81-d23e-4c7a-9141-02b859923722 rd_NO_LUKS  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_MD crashkernel=128M LANG=zh_CN.UTF-8 rd_NO_LVM rd_NO_DM rhgb quiet transparent_hugepage=never
 
-sysctl -w vm.swappiness=0
+### Reduce SWAP IO
+	sysctl -w vm.swappiness=0
 
 ## Build Repo
 repo
@@ -56,30 +57,29 @@ salt-master salt-minion
 
 docker
 
-
 ## Topology
 
-nodes:
-    edp06.esse.io:
-      roles:
-        - hadoop-namenode
-        - hadoop-datanode
-    edp05.esse.io:
-      roles:
-        - hadoop-datanode
-        - zookeeper
-    edp04.esse.io:
-      roles:
-        - hadoop-datanode
-        - spark-worker
-    edp03.esse.io:
-      roles:
-        - hadoop-datanode
-        - spark-worker
-    edp02.esse.io:
-      roles:
-        - hadoop-datanode
-    edp01.esse.io:
-      roles:
-        - hadoop-datanode
-        - postgresql
+	nodes:
+	    edp06.esse.io:
+	      roles:
+	        - hadoop-namenode
+	        - hadoop-datanode
+	    edp05.esse.io:
+	      roles:
+	        - hadoop-datanode
+	        - zookeeper
+	    edp04.esse.io:
+	      roles:
+	        - hadoop-datanode
+	        - spark-worker
+	    edp03.esse.io:
+	      roles:
+	        - hadoop-datanode
+	        - spark-worker
+	    edp02.esse.io:
+	      roles:
+	        - hadoop-datanode
+	    edp01.esse.io:
+	      roles:
+	        - hadoop-datanode
+	        - postgresql
