@@ -57,6 +57,12 @@ salt-master salt-minion
 
 docker
 
+3. deploy postgresql
+salt 'edp01.esse.io' state.sls postgresql devops
+4. deploy zookeeper
+salt -G 'roles:zookeeper' state.sls zookeeper devops
+
+
 ## Topology
 
 	nodes:
