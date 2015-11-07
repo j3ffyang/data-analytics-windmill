@@ -57,6 +57,8 @@ Or edit /etc/grub.conf
 
 [Tips and Best Practices for Jobs](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html#xd_583c10bfdbd326ba-7dae4aa6-147c30d0933--7fd5__section_m4h_tdf_jq)
 
+[Determine HDP Memory Configuration Settings](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.1/bk_installing_manually_book/content/rpm-chap1-11.html)
+
 
 ## Build Repo
 repo
