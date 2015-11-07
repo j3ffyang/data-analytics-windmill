@@ -104,6 +104,3 @@ salt -G 'roles:zookeeper' state.sls zookeeper devops
 	Storm:  nimbus.host: "edp06"  supervisor hosts: edp02,edp03,edp04,edp01
 	hbase: master edp01, regionservers edp02.edp03,edp04,edp05,edp06
 
-## Install HBase
-
-http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_ig_hbase_config.html
