@@ -2,11 +2,11 @@
 
 ## Environment Setup
 
-CentOS 6.6
+### CentOS 6.6
 
-Disable selinux
+### Disable selinux
 
-Disk partition
+### Disk partition
 
 	[root@edp06 ~]# lsblk
 	NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -22,12 +22,13 @@ Disk partition
 	
 	mount -o noatime -o remount /data/hdfs
 
-Security disable SSH password authentication
+### Security disable SSH password authentication
 
 ## Performance Tuning
-http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html
 
-### Disable transparent_hugepage > edit /etc/rc.local
+[Optimizaing Performance in CDH](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html)
+
+[Disabling Transparent Hugepage Compaction](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html#xd_583c10bfdbd326ba-7dae4aa6-147c30d0933--7fd5__section_hw3_sdf_jq)
 
 Disable THP at boot time
 
@@ -46,8 +47,18 @@ Or edit /etc/grub.conf
 
 	kernel /vmlinuz-2.6.32-504.el6.x86_64 ro root=UUID=d0bb5e81-d23e-4c7a-9141-02b859923722 rd_NO_LUKS  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_MD crashkernel=128M LANG=zh_CN.UTF-8 rd_NO_LVM rd_NO_DM rhgb quiet transparent_hugepage=never
 
-### Reduce SWAP IO
+[Disabling Transparent Hugepage Compaction](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html#xd_583c10bfdbd326ba-7dae4aa6-147c30d0933--7fd5__section_hw3_sdf_jq)
+
+[Setting the vm.swappiness Linux Kernel Parameter](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html#xd_583c10bfdbd326ba-7dae4aa6-147c30d0933--7fd5__section_xpq_sdf_jq)
+
 	sysctl -w vm.swappiness=0
+
+[Improving Performance in Shuffle Handler and IFile Reader](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html#xd_583c10bfdbd326ba-7dae4aa6-147c30d0933--7fd5__section_nt5_sdf_jq)
+
+[Best Practices for MapReduce Configuration](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html#xd_583c10bfdbd326ba-7dae4aa6-147c30d0933--7fd5__best-mapreduce)
+
+[Tips and Best Practices for Jobs](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_admin_performance.html#xd_583c10bfdbd326ba-7dae4aa6-147c30d0933--7fd5__section_m4h_tdf_jq)
+
 
 ## Build Repo
 repo
@@ -93,3 +104,6 @@ salt -G 'roles:zookeeper' state.sls zookeeper devops
 	Storm:  nimbus.host: "edp06"  supervisor hosts: edp02,edp03,edp04,edp01
 	hbase: master edp01, regionservers edp02.edp03,edp04,edp05,edp06
 
+## Install HBase
+
+http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_ig_hbase_config.html
