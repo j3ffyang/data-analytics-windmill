@@ -66,13 +66,13 @@ salt-master salt-minion
 
 docker
 
-[Install HBase](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_ig_hbase_config.html)
-
 deploy postgresql
 salt 'edp01.esse.io' state.sls postgresql devops
 
 deploy zookeeper
 salt -G 'roles:zookeeper' state.sls zookeeper devops
+
+[Install HBase](http://www.cloudera.com/content/www/en-us/documentation/enterprise/latest/topics/cdh_ig_hbase_config.html)
 
 ## Topology
 
