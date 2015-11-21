@@ -108,7 +108,7 @@
 
      chkconfig ntpd on
 
-  ### JDK
+### JDK
 #### Download
 
      for i in 1 2 3 4 5 6; do ssh poc$i "cd /tmp; wget http://192.168.210.101/repos/java/jdk-8u40-linux-x64.rpm"; done
