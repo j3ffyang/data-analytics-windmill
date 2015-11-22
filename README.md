@@ -70,7 +70,7 @@
      need option ‘defaults,noatime’ when mount FS.
      reboot all the machines
 
-### Create Local repos
+### Create Local Repos
      yum install createrepo httpd*
      cp $PATH/Packages/* $REPO_PATH/
      cd $REPO_PATH; createrepo .
@@ -107,6 +107,9 @@
      Distribute ntp.conf to all other NTP client then restart all ntp daemons on all boxes
 
      chkconfig ntpd on
+
+### Setup Repo
+Generally you need to download all pre- requisit of packages for Hortonworks
 
 ### JDK
 #### Download
@@ -206,4 +209,28 @@
      gpgcheck=1
      gpgkey=http://192.168.210.101/repos/AMBARI-2.1.2/centos6/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
      enabled=1
-     priority=1
+     priority=A
+
+## Code
+### MapReduce Sort
+
+#### Usage
+```
+java -jar mrsort.jar <hdfs source path> <hdfs output path> <analog sort no> <output int> <output start no> [start time] [end time]
+```
+
+#### Example
+```
+java -jar mrsort.jar hdfs://quickstart:8020/user/cloudera/test/lytestdata  hdfs://quickstart:8020/user/cloudera/test/mrsortout 1 10000000 1 "2015-11-21 11:00:00" "2015-11-21 21:00:00"
+```
+### Spark Sort
+
+#### Usage
+```
+spark-submit --class com.ibm.SparkSort --master yarn-client sparksort.jar <hdfs source path> <hdfs output path> <analog sort no> <output int> <output start no> [start time] [end time]
+```
+
+#### Example
+```
+spark-submit --class com.ibm.SparkSort --master yarn-client sparksort.jar hdfs://quickstart:8020/user/cloudera/test/lytestdata hdfs://quickstart:8020/user/cloudera/test/kafkasortout 1 10000000 1 "2015-11-21 11:00:00" "2015-11-21 21:00:00"
+```
