@@ -14,12 +14,12 @@
       sr0     11:0    1 1024M  0 rom    
       sda      8:0    0  2.2T  0 disk    
       ├─sda1   8:1    0  512M  0 part /boot    
-      ├─sda2   8:2    0 79.1G  0 part [SWAP]    
+      ├─sda2   8:2    0    8G  0 part [SWAP]    
       ├─sda3   8:3    0 29.3G  0 part /    
       ├─sda4   8:4    0 29.3G  0 part /tmp    
       ├─sda5   8:5    0 29.3G  0 part /var    
       ├─sda6   8:6    0  100G  0 part /usr    
-      ├─sda7   8:7    0 19.5G  0 part     /data/zookeeper    
+      ├─sda7   8:7    0 19.5G  0 part /data/zookeeper    
       └─sda8   8:8    0    2T  0 part /data    
 
 ### Hosts    
