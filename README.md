@@ -58,7 +58,7 @@
 ### Enable “set -o vi” in /etc/bashrc (optional)
      for i in 1 2 3 4 5 6; do ssh poc$i "echo 'set -o vi' >> /etc/bashrc"; done
 
-      Update “transparent_hugepage” in Kernel
+Update “transparent_hugepage” in Kernel
      /etc/grub.conf
 
      add 'transparent_hugepage=never’ at end of quite
