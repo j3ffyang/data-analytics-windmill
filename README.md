@@ -199,6 +199,10 @@ Generally you need to download all pre- requisit of packages for Hortonworks
 
 ### Trick 2
 
+Meanwhile
+
+    rm -fr /data/hawq/segments/* ; rm -fr /data/hawq/master/
+
 Re- initialize Greenplum database in case it's screwed up
 
     source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq/gpinitsystem_config -h /tmp/hawq/hostfile -s nd4.esse.io   
