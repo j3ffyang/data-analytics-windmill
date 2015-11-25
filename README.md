@@ -201,7 +201,7 @@ Generally you need to download all pre- requisit of packages for Hortonworks
 
 Re- initialize Greenplum database in case it's screwed up
 
-  source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq//gpinitsystem_config -h /tmp/hawq//hostfile -s nd4.esse.io
+  source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq/gpinitsystem_config -h /tmp/hawq/hostfile -s nd4.esse.io
 
 ### Configure Ambari
 #### Edit Repo in Ambari-Server
