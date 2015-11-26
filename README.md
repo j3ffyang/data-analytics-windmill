@@ -177,7 +177,7 @@ Generally you need to download all pre- requisit of packages for Hortonworks
      http://192.168.210.101:8080
      -admin:admin
 
-####  Trick 1 - “\u2028”
+###  Trick 1 - “\u2028” - Ambari Deployment Issue
      During starting Ambari Metrics Collector, the following error may appear
      “UnicodeEncodeError: 'ascii' codec can't encode character u'\u2028' in position 492: ordinal not in range(128)”
 
