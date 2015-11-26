@@ -3,6 +3,7 @@
 ## Hardware Setup
 * BIOS
 * Network Bonding
+* SSD hard disk
 
 ## Environment Setup
 ### Disk RAID 0
@@ -210,6 +211,9 @@ Re- initialize Greenplum database in case it's screwed up
 ### Trick 3 - Hawq Performance Tuning
 Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during data load
     gp_autostats_mode=none  
+
+### Hawq - Preparing and Adding Nodes
+[Document from Pivotal - http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes](http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes)
 
 ### Configure Ambari
 #### Edit Repo in Ambari-Server
