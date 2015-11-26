@@ -148,7 +148,7 @@ Generally you need to download all pre- requisit of packages for Hortonworks
      [root@poc1 ~]# docker restart postgresql
      postgresql
 
-#### Install docker Ambari container (optional)
+#### Install Docker Ambari Container (optional)
      docker run -d -p 8080:8080 -p 8440:8440 -p 8441:8441 --name ambari-server -h ambari-test.esse.io -e POSTGRES_SERVER=192.168.210.101 -e POSTGRES_PORT=5432 -e POSTGRES_DB=ambari_server -e POSTGRES_USER=dbuser -e POSTGRES_PWS=$PASSWD --add-host='poc1.esse.io:192.168.210.101' --add-host='poc2.esse.io:192.168.210.102' --add-host='poc3.esse.io:192.168.210.103' --add-host='poc4.esse.io:192.168.210.104' --add-host='poc5.esse.io:192.168.210.105' --add-host='poc6.esse.io:192.168.210.106' ambari:0.0.1
 
 ####  Check Ambari Starting (optional)
