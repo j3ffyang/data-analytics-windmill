@@ -213,7 +213,7 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
     gp_autostats_mode=none  
 
 ### Hawq - Preparing and Adding Nodes
-[Document from Pivotal - http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes](http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes)
+[Document from Pivotal - http://pivotalhd.docs.pivotal.io/doc/...ExpandingtheHAWQSystem-PreparingandAddingNodes](http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes)
 
 ### Configure Ambari
 #### Edit Repo in Ambari-Server
