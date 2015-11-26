@@ -257,3 +257,10 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
   * Execute command: maven clean package，and generate stromtest.jar package
   * Execute command: storm jar stormtest.jar com.ibm.stormtest.topolopy.XXXYYYTopology XXXYYY deploy stormtest.jar to storm topology environment.
   * Check the running situation by storm UI
+
+## Security
+### Hadoop Access Control
+[Hadoop ACL](http://hortonworks.com/blog/hdfs-acls-fine-grained-permissions-hdfs-files-hadoop/)
+
+### Integrate Kerberos with Ambari Server
+[Set Up Kerberos for Ambari Server](http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_Ambari_Security_Guide/content/_optional_set_up_kerberos_for_ambari_server.html)
