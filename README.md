@@ -240,6 +240,7 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
     kafka_2.11-0.8.2.1  
 
 #### Process description：
+![Storm Processing](./img/storm_proc.gif)
   * Client writes 2 hours of real-time data in seconds to the Kafka server (2000000 points / sec)
   * From the Kafka server to read the real-time second data, and add up record numbers, record the whole point of the received data, write to the log
   * Group second data according to the wind machine id, multi-thread processing
