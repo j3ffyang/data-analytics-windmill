@@ -207,7 +207,7 @@ Re- initialize Greenplum database in case it's screwed up
 
     source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq/gpinitsystem_config -h /tmp/hawq/hostfile -s nd4.esse.io   
 
-### Hawq Performance Tuning
+### Trick 3 - Hawq Performance Tuning
 Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during data load
     gp_autostats_mode=none  
 
@@ -228,6 +228,6 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
      priority=A
 
 ## Code
-### [MapReduce Sort](./MapReduceSort)
+### [MapReduce Sort](./src/MapReduceSort)
 
 ### Spark Sort
