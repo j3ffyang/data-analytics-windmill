@@ -227,7 +227,28 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
      enabled=1
      priority=A
 
-## Code
+## Sample Code
 ### [MapReduce Sort](./src/MapReduceSort)
 
-### Spark Sort
+### [Spark Sort](./src/SparkSort)
+
+## Storm Streaming Processing
+### Environment
+    maven-3.2.5+  
+    jdk1.7.0_72+  
+    storm-core-0.9.5  
+    kafka_2.11-0.8.2.1  
+
+#### Process description：
+  * Client writes 2 hours of real-time data in seconds to the Kafka server (2000000 points / sec)
+  * From the Kafka server to read the real-time second data, and add up record numbers, record the whole point of the received data, write to the log
+  * Group second data according to the wind machine id, multi-thread processing
+  * To deal with the abnormal switch value, record abnormal log
+  * To deal with the analog value exceed threshold, record abnormal log, and trigger formula to calculate Cal,write to the log
+  * After recieved 2 hours of second data, calculate the average values for all the columns of the data, write to the log
+  * The received second data is written to HDFS file, each wind machine to store a file
+
+#### Package and deploy
+  * Execute command: maven clean package，and generate stromtest.jar package
+  * Execute command: storm jar stormtest.jar com.ibm.stormtest.topolopy.XXXYYYTopology XXXYYY deploy stormtest.jar to storm topology environment.
+  * Check the running situation by storm UI
