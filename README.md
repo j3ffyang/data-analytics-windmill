@@ -197,15 +197,19 @@ Generally you need to download all pre- requisit of packages for Hortonworks
 
      /etc/init.d/ambari-server restart
 
-### Trick 2
+### Trick 2 - Howq Database Re- init
 
-Meanwhile
+Remove data dir
 
     rm -fr /data/hawq/segments/* ; rm -fr /data/hawq/master/
 
 Re- initialize Greenplum database in case it's screwed up
 
     source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq/gpinitsystem_config -h /tmp/hawq/hostfile -s nd4.esse.io   
+
+### Hawq Performance Tuning
+Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during data load
+    gp_autostats_mode=none  
 
 ### Configure Ambari
 #### Edit Repo in Ambari-Server
