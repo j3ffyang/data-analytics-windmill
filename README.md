@@ -130,7 +130,7 @@ Generally you need to download all pre- requisit of packages for Hortonworks
 ###  Install PostgreSQL and Ambari
 ####  Install docker-engine
      yum localinstall docker-engine-1.7.1-1.el6.x86_64.rpm
-####  Import PostgreSQL and Ambari images
+####  Import PostgreSQL and Ambari Images
      [root@poc1 docker-container]# ls
      ambari.tgz  postgresql.tar  zookeeper.tar
      [root@poc1 docker-container]# docker load -i postgresql.tar
@@ -151,9 +151,26 @@ Generally you need to download all pre- requisit of packages for Hortonworks
 #### Install Docker Ambari Container (optional)
      docker run -d -p 8080:8080 -p 8440:8440 -p 8441:8441 --name ambari-server -h ambari-test.esse.io -e POSTGRES_SERVER=192.168.210.101 -e POSTGRES_PORT=5432 -e POSTGRES_DB=ambari_server -e POSTGRES_USER=dbuser -e POSTGRES_PWS=$PASSWD --add-host='poc1.esse.io:192.168.210.101' --add-host='poc2.esse.io:192.168.210.102' --add-host='poc3.esse.io:192.168.210.103' --add-host='poc4.esse.io:192.168.210.104' --add-host='poc5.esse.io:192.168.210.105' --add-host='poc6.esse.io:192.168.210.106' ambari:0.0.1
 
-####  Check Ambari Starting (optional)
+####  Check Ambari Docker Starting (optional)
      docker logs -tf ambari-server
+
 ###  Install Ambari (native and recommended)
+#### Edit Repo in Ambari-Server
+
+     docker exec -it ambari-server bash
+
+     [root@docker-ambari yum.repos.d]# vi ambari.repo  
+
+     #VERSION_NUMBER=2.1.2-377
+     [Updates-ambari-2.1.2]
+     name=ambari-2.1.2 - Updates
+     baseurl=http://192.168.210.101/repos/AMBARI-2.1.2/centos6/
+     gpgcheck=1
+     gpgkey=http://192.168.210.101/repos/AMBARI-2.1.2/centos6/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+     enabled=1
+     priority=A
+
+####  Install Ambari (native and recommended)
      yum install ambari-server
 
      ambari-server setup -s \
@@ -174,7 +191,7 @@ Generally you need to download all pre- requisit of packages for Hortonworks
      ambari-server setup --jdbc-db=postgres –jdbc-driver=/data/poc/ARTIFACTS/postgresql-9.4-1201.jdbc4.jar
 
 
-###  Verify Ambari
+####  Verify Ambari
      http://192.168.210.101:8080
      -admin:admin
 
@@ -215,21 +232,6 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
 ### Hawq - Preparing and Adding Nodes
 [Document from Pivotal - http://pivotalhd.docs.pivotal.io/doc/...ExpandingtheHAWQSystem-PreparingandAddingNodes](http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes)
 
-### Configure Ambari
-#### Edit Repo in Ambari-Server
-
-     docker exec -it ambari-server bash
-
-     [root@docker-ambari yum.repos.d]# vi ambari.repo  
-
-     #VERSION_NUMBER=2.1.2-377
-     [Updates-ambari-2.1.2]
-     name=ambari-2.1.2 - Updates
-     baseurl=http://192.168.210.101/repos/AMBARI-2.1.2/centos6/
-     gpgcheck=1
-     gpgkey=http://192.168.210.101/repos/AMBARI-2.1.2/centos6/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
-     enabled=1
-     priority=A
 
 ## Sample Code
 ### [MapReduce Sort](./src/MapReduceSort)
