@@ -266,3 +266,12 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
 
 ### Integrate Kerberos with Ambari Server
 [Set Up Kerberos for Ambari Server](http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_Ambari_Security_Guide/content/_optional_set_up_kerberos_for_ambari_server.html)
+
+## Security
+## Integrate Kerberos with Ambari
+### Download JCE Security Policy
+    http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.1.0/bk_Ambari_Security_Guide/content/_distribute_and_install_the_jce.html
+### Apply JCE
+    for i in 1 2 3 4 5 6; do ssh poc$i 'echo $HOSTNAME; cd /tmp; unzip -o -j -q jce_policy-8.zip -d /usr/jdk64/jdk1.8.0_40/jre/lib/security/'; done
+
+Restart Ambari-Server 
