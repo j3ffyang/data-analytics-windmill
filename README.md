@@ -267,6 +267,7 @@ Create multiple segments during install - [hawq.data.directory](http://hawq.docs
 
 ### Trick 3 - Hawq Performance Tuning
 Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during data load
+
     gp_autostats_mode=none  
 
 ### Hawq Performance Tuning - Memory
