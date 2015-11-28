@@ -25,6 +25,14 @@ All 1T * 5 disks
       ├─sda7   8:7    0 19.5G  0 part /data/zookeeper    
       └─sda8   8:8    0    2T  0 part /data    
 
+### Mount Parameter for Performance
+To ensure "noatime" param is added when mounting /data and /data/zookeeper
+
+    for i in {1..5}; do ssh nd$i 'echo $HOSTNAME; grep "defaults,noatime" /etc/fstab'; done
+
+### Disk Performance - utilization check
+    iostat -p sda -x  
+
 ### Hosts    
     cat /etc/hosts
 
@@ -68,6 +76,31 @@ Update “transparent_hugepage” in Kernel
 
 ### Update /etc/sysctl.conf
      vm.swappiness=0
+
+     sysctl.kernel.shmmax = 500000000 
+     sysctl.kernel.shmmni = 4096
+     sysctl.kernel.shmall = 4000000000
+     sysctl.kernel.sem = 250 512000 100 2048
+     sysctl.kernel.sysrq = 1 
+     sysctl.kernel.core_uses_pid = 1 
+     sysctl.kernel.msgmnb = 65536 
+     sysctl.kernel.msgmax = 65536 
+     sysctl.kernel.msgmni = 2048
+     sysctl.net.ipv4.tcp_syncookies = 0
+     sysctl.net.ipv4.ip_forward = 0
+     sysctl.net.ipv4.conf.default.accept_source_route = 0
+     sysctl.net.ipv4.tcp_tw_recycle = 1
+     sysctl.net.ipv4.tcp_max_syn_backlog = 200000
+     sysctl.net.ipv4.conf.all.arp_filter = 1
+     sysctl.net.ipv4.ip_local_port_range = 1025 65535
+     sysctl.net.core.netdev_max_backlog = 200000
+     sysctl.vm.overcommit_memory = 2
+     sysctl.fs.nr_open = 3000000
+     sysctl.kernel.threads-max = 798720
+     sysctl.kernel.pid_max = 798720
+     #increase network
+     sysctl.net.core.rmem_max = 2097152
+     sysctl.net.core.wmen_max = 2097152
 
 ### Update /etc/fstab
      need option ‘defaults,noatime’ when mount FS.
@@ -229,6 +262,12 @@ Re- initialize Greenplum database in case it's screwed up
 Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during data load
     gp_autostats_mode=none  
 
+### Hawq Performance Tuning - Memory
+    gpconfig -c gp_vmem_protect_limit -v 8192 -m 21504    
+
+### HDFS Tuning for Hawq
+[Set dfs.block.access.token.enable to false for unsecured HDFS clusters.](http://hawq.docs.pivotal.io/docs-hawq/topics/prepare-hosts.html)
+
 ### Hawq - Preparing and Adding Nodes
 [Document from Pivotal - http://pivotalhd.docs.pivotal.io/doc/...ExpandingtheHAWQSystem-PreparingandAddingNodes](http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes)
 
@@ -245,7 +284,7 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
     storm-core-0.9.5  
     kafka_2.11-0.8.2.1  
 
-#### Process description：
+#### Process Description：
 ![Storm Processing](./img/storm_proc.gif)
   * Client writes 2 hours of real-time data in seconds to the Kafka server (2000000 points / sec)
   * From the Kafka server to read the real-time second data, and add up record numbers, record the whole point of the received data, write to the log
@@ -255,7 +294,7 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
   * After recieved 2 hours of second data, calculate the average values for all the columns of the data, write to the log
   * The received second data is written to HDFS file, each wind machine to store a file
 
-#### Package and deploy
+#### Package and Deploy
   * Execute command: maven clean package，and generate stromtest.jar package
   * Execute command: storm jar stormtest.jar com.ibm.stormtest.topolopy.XXXYYYTopology XXXYYY deploy stormtest.jar to storm topology environment.
   * Check the running situation by storm UI
