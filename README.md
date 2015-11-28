@@ -77,6 +77,7 @@ Update “transparent_hugepage” in Kernel
 ### Update /etc/sysctl.conf
      vm.swappiness=0
 
+[Recommended by Pivotal](http://hawq.docs.pivotal.io/docs-hawq/topics/InstallingHAWQ.html#linux)
      sysctl.kernel.shmmax = 500000000 
      sysctl.kernel.shmmni = 4096
      sysctl.kernel.shmall = 4000000000
@@ -258,11 +259,19 @@ Re- initialize Greenplum database in case it's screwed up
 
     source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq/gpinitsystem_config -h /tmp/hawq/hostfile -s nd4.esse.io   
 
+### Hawq Performance Tuning - Install
+Create multiple segments during install - [hawq.data.directory](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
+
+### Hawq Performance Tuning in General
+[General](http://hawq.docs.pivotal.io/docs-hawq/docs-hawq-shared/admin_guide/perf_issues.html)
+
 ### Trick 3 - Hawq Performance Tuning
 Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during data load
     gp_autostats_mode=none  
 
 ### Hawq Performance Tuning - Memory
+[http://hawq.docs.pivotal.io/docs-hawq/guc_config-gp_vmem_protect_limit.html#gp_vmem_protect_limit](http://hawq.docs.pivotal.io/docs-hawq/guc_config-gp_vmem_protect_limit.html#gp_vmem_protect_limit)
+
     gpconfig -c gp_vmem_protect_limit -v 8192 -m 21504    
 
 ### HDFS Tuning for Hawq
