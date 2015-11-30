@@ -46,8 +46,10 @@ To ensure "noatime" param is added when mounting /data and /data/zookeeper
       192.168.210.105 poc5 poc5.esse.io     
       192.168.210.106 poc6 poc6.esse.io     
 
+Distribute /etc/hosts to all hosts
+    for i in [2..5]; do scp /etc/hosts poc$i:/etc/hosts; done
 
-### Speed up sshd
+### Speed up sshd. Edit /etc/ssh/sshd_config
     UseDNS no   
     GSSAPIAuthentication no     
 
@@ -70,15 +72,15 @@ To ensure "noatime" param is added when mounting /data and /data/zookeeper
      for i in 1 2 3 4 5 6; do ssh poc$i "echo 'set -o vi' >> /etc/bashrc"; done
 
 Update “transparent_hugepage” in Kernel
-     /etc/grub.conf
+Edit /etc/grub.conf and add the following at the end of line quite
 
-     add 'transparent_hugepage=never’ at end of quite
+    transparent_hugepage=never  
 
 ### Update /etc/sysctl.conf
      vm.swappiness=0
 
 [Recommended by Pivotal](http://hawq.docs.pivotal.io/docs-hawq/topics/InstallingHAWQ.html#linux)
-     sysctl.kernel.shmmax = 500000000 
+     sysctl.kernel.shmmax = 500000000	
      sysctl.kernel.shmmni = 4096
      sysctl.kernel.shmall = 4000000000
      sysctl.kernel.sem = 250 512000 100 2048
