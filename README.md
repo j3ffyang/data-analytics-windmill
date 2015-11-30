@@ -74,8 +74,7 @@ Edit /etc/ssh/sshd_config
 ### Enable “set -o vi” in /etc/bashrc (optional)
      for i in 1 2 3 4 5 6; do ssh poc$i "echo 'set -o vi' >> /etc/bashrc"; done
 
-Update “transparent_hugepage” in Kernel
-Edit /etc/grub.conf and add the following at the end of line quite
+Update “transparent_hugepage” in Kernel. Edit /etc/grub.conf and add the following at the end of line quite
 
     transparent_hugepage=never  
 
@@ -109,10 +108,6 @@ Edit /etc/grub.conf and add the following at the end of line quite
      sysctl.net.core.rmem_max = 2097152
      sysctl.net.core.wmen_max = 2097152
 
-### Update /etc/fstab
-     need option ‘defaults,noatime’ when mount FS.
-     reboot all the machines
-
 ### Create Local Repos
      yum install createrepo httpd*
      cp $PATH/Packages/* $REPO_PATH/
@@ -131,13 +126,13 @@ Edit /etc/grub.conf and add the following at the end of line quite
 
      yum clean all; yum update
 
-     Remove original repos and copy repo to all other hosts
-     for i in 2 3 4 5 6; do ssh poc$i "mv /etc/yum.repos.d/* /tmp"; done
+Remove original repos and copy repo to all other hosts
 
+     for i in 2 3 4 5 6; do ssh poc$i "mv /etc/yum.repos.d/* /tmp"; done
      for i in 2 3 4 5 6; do scp /etc/yum.repos.d/* poc$i:/etc/yum.repos.d/; done
 
 ### Setup NTP on all machines
-     On NTP Server, edit /etc/ntp.conf
+On NTP Server, edit /etc/ntp.conf
 
      server poc1.esse.io iburst
      #server 1.centos.pool.ntp.org iburst
@@ -147,7 +142,7 @@ Edit /etc/grub.conf and add the following at the end of line quite
      server  127.127.1.0 # local clock
      fudge   127.127.1.0 stratum 10
 
-     Distribute ntp.conf to all other NTP client then restart all ntp daemons on all boxes
+Distribute ntp.conf to all other NTP client then restart all ntp daemons on all boxes
 
      chkconfig ntpd on
 
@@ -160,17 +155,21 @@ Generally you need to download all pre- requisit of packages for Hortonworks
      for i in 1 2 3 4 5 6; do ssh poc$i "cd /tmp; wget http://192.168.210.101/repos/java/jdk-8u40-linux-x64.rpm"; done
 
 #### Install JDK
+
      for i in 1 2 3 4 5 6; do ssh poc$i "cd /tmp; yum localinstall jdk-8u40-linux-x64.rpm -y"; done
 
 #### Create a Softlink
+
      ln -s /usr/java /usr/jdk64
      for i in 2 3 4 5 6; do ssh poc$i "ln -s /usr/java /usr/jdk64"; done
 
 ##  Hortonworks Data Platform Manager Setup
 ###  Install PostgreSQL and Ambari
 ####  Install docker-engine
+
      yum localinstall docker-engine-1.7.1-1.el6.x86_64.rpm
 ####  Import PostgreSQL and Ambari Images
+
      [root@poc1 docker-container]# ls
      ambari.tgz  postgresql.tar  zookeeper.tar
      [root@poc1 docker-container]# docker load -i postgresql.tar
@@ -197,9 +196,7 @@ Generally you need to download all pre- requisit of packages for Hortonworks
 ###  Install Ambari (native and recommended)
 #### Edit Repo in Ambari-Server
 
-     docker exec -it ambari-server bash
-
-     [root@docker-ambari yum.repos.d]# vi ambari.repo  
+     [root@docker-ambari yum.repos.d]# cat ambari.repo  
 
      #VERSION_NUMBER=2.1.2-377
      [Updates-ambari-2.1.2]
@@ -230,16 +227,16 @@ Generally you need to download all pre- requisit of packages for Hortonworks
 
      ambari-server setup --jdbc-db=postgres –jdbc-driver=/data/poc/ARTIFACTS/postgresql-9.4-1201.jdbc4.jar
 
-
 ####  Verify Ambari
      http://192.168.210.101:8080
      -admin:admin
 
-###  Trick 1 - “\u2028” - Ambari Deployment Issue
-During starting Ambari Metrics Collector, the following error may appear
+###  Remove Character “\u2028” - Ambari Deployment Issue
+During starting Ambari Metrics Collector, the following error may appear if ONLY ONE ZooKeeper broker is installed.
+
      “UnicodeEncodeError: 'ascii' codec can't encode character u'\u2028' in position 492: ordinal not in range(128)”
 
-Workaround of getting rid of “\u2028”
+Workaround of getting rid of “\u2028”, which is an "Enter"
 
 Check whether “ambari_server” database contains such char
 
@@ -256,7 +253,8 @@ Make sure that the value of “config_date” doesn't contain any of “\u2028�
      /etc/init.d/ambari-server restart
 
 ### Hawq Install Pre- requisite
-    [http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
+
+[http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
 ### Trick 2 - Hawq Database Re- init
 
