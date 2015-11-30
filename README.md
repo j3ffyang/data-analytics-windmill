@@ -50,7 +50,9 @@ Distribute /etc/hosts to all hosts
 
     for i in [2..5]; do scp /etc/hosts poc$i:/etc/hosts; done
 
-### Speed up sshd. Edit /etc/ssh/sshd_config
+### Speed up SSHd
+Edit /etc/ssh/sshd_config
+
     UseDNS no   
     GSSAPIAuthentication no     
 
