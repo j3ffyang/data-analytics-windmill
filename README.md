@@ -271,6 +271,7 @@ Advanced hdfs-site Properties
 |dfs.namenode.accesstime.precision | 	-1
 
 Advanced core-site Properties
+
 | Property | Setting |
 | -------- | ------- |
 | ipc.client.connection.maxidletime 	| 3600000
