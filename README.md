@@ -249,6 +249,9 @@ Make sure that the value of “config_date” doesn't contain any of “\u2028�
 
      /etc/init.d/ambari-server restart
 
+### Hawq Install Pre- requisite
+    [http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
+
 ### Trick 2 - Hawq Database Re- init
 
 Remove data dir
