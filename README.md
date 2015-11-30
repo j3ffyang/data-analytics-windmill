@@ -47,6 +47,7 @@ To ensure "noatime" param is added when mounting /data and /data/zookeeper
       192.168.210.106 poc6 poc6.esse.io     
 
 Distribute /etc/hosts to all hosts
+
     for i in [2..5]; do scp /etc/hosts poc$i:/etc/hosts; done
 
 ### Speed up sshd. Edit /etc/ssh/sshd_config
