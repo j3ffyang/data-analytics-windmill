@@ -80,6 +80,7 @@ Edit /etc/grub.conf and add the following at the end of line quite
      vm.swappiness=0
 
 [Recommended by Pivotal](http://hawq.docs.pivotal.io/docs-hawq/topics/InstallingHAWQ.html#linux)  
+
      sysctl.kernel.shmmax = 500000000
      sysctl.kernel.shmmni = 4096
      sysctl.kernel.shmall = 4000000000
