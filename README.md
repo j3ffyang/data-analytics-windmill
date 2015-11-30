@@ -257,7 +257,7 @@ Make sure that the value of “config_date” doesn't contain any of “\u2028�
 
 Reference > [http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
-Advanced hdfs-site Properties
+#### Advanced hdfs-site Properties
 
 | Property | Settings |
 | -------- | -------- |
@@ -270,13 +270,15 @@ Advanced hdfs-site Properties
 |dfs.datanode.handler.count 	 |60
 |dfs.namenode.accesstime.precision | 	-1
 
-Advanced core-site Properties
+#### Advanced core-site Properties
 
 | Property | Setting |
 | -------- | ------- |
 | ipc.client.connection.maxidletime 	| 3600000
 | ipc.client.connect.timeout 	| 300000
 | ipc.server.listen.queue.size 	| 3300
+
+#### Advanced hawq-site Properties
 
 Make sure you follow up the instruction at [Advanced hawq-site Properties](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
