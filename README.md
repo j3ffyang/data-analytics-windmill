@@ -277,6 +277,8 @@ Advanced core-site Properties
 | ipc.client.connect.timeout 	| 300000
 | ipc.server.listen.queue.size 	| 3300
 
+Make sure you follow up the instruction at [Advanced hawq-site Properties](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
+
 ### Hawq Performance Tuning - Install
 Create multiple segments during install - [hawq.data.directory](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
