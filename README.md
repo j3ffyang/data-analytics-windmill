@@ -285,9 +285,6 @@ Make sure you follow up the instruction at [Advanced hawq-site Properties](http:
 ### Hawq Performance Tuning - Install
 Create multiple segments during install - [hawq.data.directory](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
-### Hawq Performance Tuning in General
-[General](http://hawq.docs.pivotal.io/docs-hawq/docs-hawq-shared/admin_guide/perf_issues.html)
-
 ### Trick 3 - Hawq Performance Tuning
 Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during data load
 
@@ -301,10 +298,13 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
 ### HDFS Tuning for Hawq
 [Set dfs.block.access.token.enable to false for unsecured HDFS clusters.](http://hawq.docs.pivotal.io/docs-hawq/topics/prepare-hosts.html)
 
+### Hawq Performance Tuning in General
+[Common Causes of Performance Issues](http://hawq.docs.pivotal.io/docs-hawq/docs-hawq-shared/admin_guide/perf_issues.html)
+
 ### Hawq - Preparing and Adding Nodes
 [Document from Pivotal - http://pivotalhd.docs.pivotal.io/doc/...ExpandingtheHAWQSystem-PreparingandAddingNodes](http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes)
 
-### Trick 2 - Hawq Database Re- init
+### Hawq Database Re- init (just in- case)
 
 Remove data dir
 
@@ -313,6 +313,24 @@ Remove data dir
 Re- initialize Greenplum database in case it's screwed up
 
     source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq/gpinitsystem_config -h /tmp/hawq/hostfile -s nd4.esse.io   
+
+## Security
+## Hadoop Access Control
+[Hadoop ACL](http://hortonworks.com/blog/hdfs-acls-fine-grained-permissions-hdfs-files-hadoop/)
+
+## Integrate Kerberos with Ambari
+[Set Up Kerberos for Ambari Server](http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_Ambari_Security_Guide/content/_optional_set_up_kerberos_for_ambari_server.html)
+
+### Download JCE Security Policy
+    http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.1.0/bk_Ambari_Security_Guide/content/_distribute_and_install_the_jce.html
+
+### Apply JCE
+    for i in 1 2 3 4 5 6; do ssh poc$i 'echo $HOSTNAME; cd /tmp; unzip -o -j -q jce_policy-8.zip -d /usr/jdk64/jdk1.8.0_40/jre/lib/security/'; done
+
+Restart Ambari-Server
+
+### Install Kerberos
+[Follow this instruction](http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.1.0/bk_Ambari_Security_Guide/content/ch_configuring_amb_hdp_for_kerberos.html)
 
 
 ## Sample Code
@@ -341,21 +359,3 @@ Re- initialize Greenplum database in case it's screwed up
   * Execute command: maven clean package，and generate stromtest.jar package
   * Execute command: storm jar stormtest.jar com.ibm.stormtest.topolopy.XXXYYYTopology XXXYYY deploy stormtest.jar to storm topology environment.
   * Check the running situation by storm UI
-
-## Security
-## Hadoop Access Control
-[Hadoop ACL](http://hortonworks.com/blog/hdfs-acls-fine-grained-permissions-hdfs-files-hadoop/)
-
-## Integrate Kerberos with Ambari
-[Set Up Kerberos for Ambari Server](http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.2.0/bk_Ambari_Security_Guide/content/_optional_set_up_kerberos_for_ambari_server.html)
-
-### Download JCE Security Policy
-    http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.1.0/bk_Ambari_Security_Guide/content/_distribute_and_install_the_jce.html
-
-### Apply JCE
-    for i in 1 2 3 4 5 6; do ssh poc$i 'echo $HOSTNAME; cd /tmp; unzip -o -j -q jce_policy-8.zip -d /usr/jdk64/jdk1.8.0_40/jre/lib/security/'; done
-
-Restart Ambari-Server
-
-### Install Kerberos
-[Follow this instruction](http://docs.hortonworks.com/HDPDocuments/Ambari-2.1.1.0/bk_Ambari_Security_Guide/content/ch_configuring_amb_hdp_for_kerberos.html)
