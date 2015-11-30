@@ -255,7 +255,7 @@ Make sure that the value of “config_date” doesn't contain any of “\u2028�
 ## Install Hawq
 ### Hawq Install Pre- requisite
 
-Reference: [http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
+Reference > [http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
 Advanced hdfs-site Properties
 
@@ -269,6 +269,13 @@ Advanced hdfs-site Properties
 |dfs.datanode.max.transfer.threads | 	40960
 |dfs.datanode.handler.count 	 |60
 |dfs.namenode.accesstime.precision | 	-1
+
+Advanced core-site Properties
+| Property | Setting |
+| -------- | ------- |
+| ipc.client.connection.maxidletime 	| 3600000
+| ipc.client.connect.timeout 	| 300000
+| ipc.server.listen.queue.size 	| 3300
 
 ### Hawq Performance Tuning - Install
 Create multiple segments during install - [hawq.data.directory](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
