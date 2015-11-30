@@ -282,23 +282,24 @@ Reference > [http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](h
 
 Make sure you follow up the instruction at [Advanced hawq-site Properties](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
-### Hawq Performance Tuning - Install
+### Hawq Performance Tuning
+#### Install
 Create multiple segments during install - [hawq.data.directory](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
-### Trick 3 - Hawq Performance Tuning
+#### PostgreSQL
 Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during data load
 
     gp_autostats_mode=none  
 
-### Hawq Performance Tuning - Memory
+#### Memory
 [http://hawq.docs.pivotal.io/docs-hawq/guc_config-gp_vmem_protect_limit.html#gp_vmem_protect_limit](http://hawq.docs.pivotal.io/docs-hawq/guc_config-gp_vmem_protect_limit.html#gp_vmem_protect_limit)
 
     gpconfig -c gp_vmem_protect_limit -v 8192 -m 21504    
 
-### HDFS Tuning for Hawq
+#### HDFS
 [Set dfs.block.access.token.enable to false for unsecured HDFS clusters.](http://hawq.docs.pivotal.io/docs-hawq/topics/prepare-hosts.html)
 
-### Hawq Performance Tuning in General
+#### Common Causes of Performance Issues 
 [Common Causes of Performance Issues](http://hawq.docs.pivotal.io/docs-hawq/docs-hawq-shared/admin_guide/perf_issues.html)
 
 ### Hawq - Preparing and Adding Nodes
