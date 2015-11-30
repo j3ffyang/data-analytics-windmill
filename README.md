@@ -252,19 +252,10 @@ Make sure that the value of “config_date” doesn't contain any of “\u2028�
 
      /etc/init.d/ambari-server restart
 
+## Install Hawq
 ### Hawq Install Pre- requisite
 
 [http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
-
-### Trick 2 - Hawq Database Re- init
-
-Remove data dir
-
-    rm -fr /data/hawq/segments/* ; rm -fr /data/hawq/master/
-
-Re- initialize Greenplum database in case it's screwed up
-
-    source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq/gpinitsystem_config -h /tmp/hawq/hostfile -s nd4.esse.io   
 
 ### Hawq Performance Tuning - Install
 Create multiple segments during install - [hawq.data.directory](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
@@ -287,6 +278,16 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
 
 ### Hawq - Preparing and Adding Nodes
 [Document from Pivotal - http://pivotalhd.docs.pivotal.io/doc/...ExpandingtheHAWQSystem-PreparingandAddingNodes](http://pivotalhd-210.docs.pivotal.io/doc/2010/ExpandingtheHAWQSystem.html#ExpandingtheHAWQSystem-PreparingandAddingNodes)
+
+### Trick 2 - Hawq Database Re- init
+
+Remove data dir
+
+    rm -fr /data/hawq/segments/* ; rm -fr /data/hawq/master/
+
+Re- initialize Greenplum database in case it's screwed up
+
+    source /usr/local/hawq/greenplum_path.sh; gpinitsystem -a -c /tmp/hawq/gpinitsystem_config -h /tmp/hawq/hostfile -s nd4.esse.io   
 
 
 ## Sample Code
