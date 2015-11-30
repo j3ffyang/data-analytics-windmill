@@ -1,5 +1,8 @@
 # Data Analytics PoC Deployment Guide
 
+## Architecture Overview
+![Architecture](./img/20151130_arch_des.png)
+
 ## Hardware Setup
 * BIOS
 * Network Bonding
@@ -299,7 +302,7 @@ Edit /data/hawq/master/gpseg-1/postgresql.conf, to disable statistics during dat
 #### HDFS
 [Set dfs.block.access.token.enable to false for unsecured HDFS clusters.](http://hawq.docs.pivotal.io/docs-hawq/topics/prepare-hosts.html)
 
-#### Common Causes of Performance Issues 
+#### Common Causes of Performance Issues
 [Common Causes of Performance Issues](http://hawq.docs.pivotal.io/docs-hawq/docs-hawq-shared/admin_guide/perf_issues.html)
 
 ### Hawq - Preparing and Adding Nodes
