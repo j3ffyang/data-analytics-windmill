@@ -3,6 +3,12 @@
 ## Architecture Overview
 ![Architecture](./img/20151130_arch_des.png)
 
+## Business Data Processing Logic
+![Data Processing Logic](./img/20151130_data_proc_logic.png)
+
+## Hadoop High Availability
+![Hadoop HA](./img/20151130_hadoop_ha.png)
+
 ## Hardware Setup
 * BIOS
 * Network Bonding
