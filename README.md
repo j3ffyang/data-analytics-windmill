@@ -257,6 +257,18 @@ Make sure that the value of “config_date” doesn't contain any of “\u2028�
 
 [http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
+Advanced hdfs-site Properties
+
+|| Property || Settings ||
+| dfs.allow.truncate 	| true |
+dfs.support.append 	true
+dfs.client.read.shortcircuit 	true
+dfs.block.local-path-access.user 	gpadmin
+dfs.datanode.data.dir.perm 	750
+dfs.datanode.max.transfer.threads 	40960
+dfs.datanode.handler.count 	60
+dfs.namenode.accesstime.precision 	-1
+
 ### Hawq Performance Tuning - Install
 Create multiple segments during install - [hawq.data.directory](http://hawq.docs.pivotal.io/docs-hawq/topics/install-ambari.html)
 
